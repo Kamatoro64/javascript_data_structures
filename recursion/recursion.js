@@ -71,7 +71,7 @@ sumRangeRecursive(3,0)
 															   |
 															   Fix: return sumRangeRecursive(n - 1, total += n) (explicitly return the return value of the recursive function)
 															   |
-															   |
+|--------------------------------------------------------------|
 Corrected sequence:
 
 sumRangeRecursive(3,0)
@@ -82,3 +82,40 @@ sumRangeRecursive(3,0)
 	return 6
 return 6
 */
+
+// Real recursion problem - print children
+
+const tree = {
+	name: 'John',
+	children: [
+		{
+			name: 'Jim',
+			children: []
+		},
+		{
+			name: 'Zoe',
+			children: [
+				{ name: 'Kyle', children: [] },
+				{ name: 'Sophia', children: [] },
+
+			]
+		}
+	]
+}
+
+// Each Object represents a person and has a name and children property
+
+function printChildren(tree) {
+	// Base case. If person has no children, return function
+	if (!tree.children || !tree.children.length) {
+		return
+	}
+	// Else, print each child and run the printChildren function on each
+	tree.children.forEach(child => {
+		console.log(`${tree.name} <- ${child.name}`)
+		printChildren(child)
+	});
+
+}
+
+printChildren(tree)
