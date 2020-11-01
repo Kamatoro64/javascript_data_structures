@@ -57,10 +57,11 @@ function sumRangeRecursive(n, total = 0) {
 
 console.log(sumRangeRecursive(3))
 
-/* BUG: Forgetting to return the return value of the recursive function. Fails at unwind
+/* Call stack
+BUG FIX: Forgetting to return the return value of the recursive function. Fails at unwind
 sumRangeRecursive(3,0)
 	sumRangeRecursive(2,3)
-		sumRangeRecursive(1, 5) -> returns undefined since ---- BUG
+		sumRangeRecursive(1, 5) -> returns undefined since -- BUG
 			sumRangeRecursive(0, 6) -> return 6 to caller      |
 															   |
 															   |
@@ -73,8 +74,11 @@ sumRangeRecursive(3,0)
 															   |
 Corrected sequence:
 
-sumRangeRecursive(3,0) -> return 6
-	sumRangeRecursive(2,3) -> return 6
-		sumRangeRecursive(1, 5) -> return 6
+sumRangeRecursive(3,0)
+	sumRangeRecursive(2,3)
+		sumRangeRecursive(1, 5)
 			sumRangeRecursive(0, 6) -> return 6 to caller
+		return 6
+	return 6
+return 6
 */
